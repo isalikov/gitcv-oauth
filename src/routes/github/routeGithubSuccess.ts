@@ -1,7 +1,9 @@
 import { Response, Request } from 'express';
 import httpStatus from 'http-status';
+import crypto from 'crypto'
 
-import { getGithubToken } from '../../github';
+import redis from '../../services/redis';
+import { getGithubToken, getGithubUser } from '../../github';
 
 const routeGithubSuccess = async (req: Request, res: Response) => {
     const { code } = req.query;
@@ -20,7 +22,16 @@ const routeGithubSuccess = async (req: Request, res: Response) => {
         return;
     }
 
-    res.redirect(`${process.env.APP_CALLBACK_URL}?at=session_token`);
+    const githubUser = await getGithubUser(githubToken)
+
+    const sessionToken = crypto
+        .createHash('sha256')
+        .update(githubToken, 'utf8')
+        .digest('hex');
+
+    await redis.hSet(sessionToken, githubUser.id, githubToken)
+
+    res.redirect(`${process.env.APP_CALLBACK_URL}?st=${sessionToken}`);
 };
 
 export default routeGithubSuccess;
