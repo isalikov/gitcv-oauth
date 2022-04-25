@@ -1,7 +1,7 @@
 import { Response, Request } from 'express';
 import httpStatus from 'http-status';
 
-import { getGithubUser, getGithubToken } from '../../github';
+import { getGithubToken } from '../../github';
 
 const routeGithubSuccess = async (req: Request, res: Response) => {
     const { code } = req.query;
@@ -20,9 +20,7 @@ const routeGithubSuccess = async (req: Request, res: Response) => {
         return;
     }
 
-    const githubUser = await getGithubUser(githubToken)
-
-    res.json(githubUser);
+    res.redirect(`${process.env.APP_CALLBACK_URL}?at=session_token`);
 };
 
 export default routeGithubSuccess;

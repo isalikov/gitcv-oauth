@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import httpStatus from 'http-status';
 
-import auth from './auth';
+import github from './github';
 
 const routes = Router();
 
-routes.use('/', auth);
+routes.use('/github', github);
 
 routes.use('*', (_, res) => {
     res.status(httpStatus.NOT_FOUND).send(httpStatus['NOT_FOUND']);
