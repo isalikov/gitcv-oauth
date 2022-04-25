@@ -1,13 +1,14 @@
 import { Router } from 'express';
+import httpStatus from 'http-status';
 
-import auth from './auth';
-
-import { NotFound } from '../middlewares';
+import github from './github';
 
 const routes = Router();
 
-routes.use('/auth', auth);
+routes.use('/github', github);
 
-routes.use('*', NotFound);
+routes.use('*', (_, res) => {
+    res.status(httpStatus.NOT_FOUND).send(httpStatus['NOT_FOUND']);
+});
 
 export default routes;
