@@ -3,7 +3,6 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import http from 'http';
 import morgan from 'morgan';
-import useragent from 'express-useragent';
 
 dotenv.config();
 
@@ -16,7 +15,6 @@ const main = async () => {
     const server = http.createServer(app);
 
     app.use(bodyParser.json());
-    app.use(useragent.express());
     app.use(morgan(isDevelop ? 'dev' : 'common'));
     app.use(routes);
     server.listen(process.env.PORT);

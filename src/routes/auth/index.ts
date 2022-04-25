@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
-import AuthGetGithubRedirect from './AuthGetGithubRedirect';
-import AuthHandleGithubCallback from './AuthHandleGithubCallback';
+import routeGithubOAuth from './routeGithubOAuth';
+import routeGithubSuccess from './routeGithubSuccess';
 
 const routes = Router();
 
-routes.get('/github', AuthGetGithubRedirect);
-routes.get('/github/oauth', AuthHandleGithubCallback);
+routes.get('/github/oauth', routeGithubOAuth);
+routes.get('/github/success', routeGithubSuccess);
 
 export default routes;

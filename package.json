@@ -1,9 +1,9 @@
 {
-  "name": "gitcv-api",
+  "name": "gitcv-oauth",
   "private": "true",
   "version": "0.0.1",
-  "description": "gitcv.io api layer",
-  "repository": "git@github.com:isalikov/gitcv-api.git",
+  "description": "gitcv.io oauth layer",
+  "repository": "git@github.com:isalikov/gitcv-oauth.git",
   "author": "Iakov Salikov <salikovpro@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -38,7 +38,6 @@
   "dependencies": {
     "@octokit/core": "^3.6.0",
     "axios": "^0.26.1",
-    "body-parser": "^1.19.2",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.3",
     "express-useragent": "^1.0.15",
