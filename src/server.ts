@@ -7,12 +7,12 @@ import morgan from 'morgan';
 dotenv.config();
 
 import routes from './routes';
-import redis from './services/redis'
+import redis from './services/redis';
 
 const main = async () => {
     const isDevelop = process.env.NODE_ENV !== 'production';
 
-    await redis.connect()
+    await redis.connect();
 
     const app = express();
     const server = http.createServer(app);
