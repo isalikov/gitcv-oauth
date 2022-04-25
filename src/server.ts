@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import http from 'http';
 import morgan from 'morgan';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const main = async () => {
     const app = express();
     const server = http.createServer(app);
 
+    app.use(cors());
     app.use(bodyParser.json());
     app.use(morgan(isDevelop ? 'dev' : 'common'));
     app.use(routes);
