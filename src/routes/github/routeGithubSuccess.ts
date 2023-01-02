@@ -9,7 +9,7 @@ const routeGithubSuccess = async (req: Request, res: Response) => {
     const { code } = req.query;
 
     if (!code) {
-        res.status(httpStatus.BAD_REQUEST).send(httpStatus['BAD_REQUEST']);
+        res.sendStatus(httpStatus.BAD_REQUEST);
 
         return;
     }
@@ -17,7 +17,7 @@ const routeGithubSuccess = async (req: Request, res: Response) => {
     const githubToken = await getGithubToken(code as string);
 
     if (!githubToken) {
-        res.status(httpStatus.UNAUTHORIZED).send(httpStatus['UNAUTHORIZED']);
+        res.sendStatus(httpStatus.UNAUTHORIZED);
 
         return;
     }
@@ -28,7 +28,7 @@ const routeGithubSuccess = async (req: Request, res: Response) => {
 
     await redis.hSet(sessionToken, githubUser.id, githubToken);
 
-    res.redirect(`${process.env.APP_CALLBACK_URL}?st=${sessionToken}`);
+    res.redirect(`${process.env.APP_CALLBACK_URL}/${sessionToken}`);
 };
 
 export default routeGithubSuccess;
