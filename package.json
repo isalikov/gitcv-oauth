@@ -1,9 +1,12 @@
 {
   "name": "gitcv-oauth",
   "private": "true",
-  "version": "0.0.1",
-  "description": "gitcv.io oauth layer",
-  "repository": "git@github.com:isalikov/gitcv-oauth.git",
+  "version": "1.0.1",
+  "description": "gitcv.io oauth",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:isalikov/gitcv-api.git"
+  },
   "author": "Iakov Salikov <salikovpro@gmail.com>",
   "license": "MIT",
   "scripts": {
